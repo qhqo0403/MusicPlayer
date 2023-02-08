@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Music Player</title>
+</head>
+<body>
+  <canvas></canvas>
+  <div id="wrapper">
+    <div class="play-body">
+      <div class="top">
+        <h2>Music Player</h2>
+        <span id="volume-btn" class="material-icons">volume_mute</span>
+      <!--  <input type="range" value="2" max="10"> -->
+      </div>
+      <div class="album-img">
+        <img src="assets/images/track1.jpg" alt="album img">
+      </div>
+      <div class="info">
+        <p class="title">Work N' Play</p>
+        <p class="artist">Samie Bower</p>
+      </div>
+      <div class="progressive">
+        <div class="bar"><audio src="assets/songs/Work_N'_Play_-_samiebower.mp3" id="main-audio"></audio></div>
+        <div class="timer">
+          <span class="current">0:00</span>
+          <span class="duration">0:00</span>
+        </div>
+      </div>
+      <div class="control">        
+        <span id="repeat-btn" class="material-icons">repeat</span>
+        <span id="prev-btn" class="material-icons">skip_previous</span>
+        <div class="play-pause">
+          <span id="play-btn" class="material-icons">play_arrow</span>
+        </div>
+        <span id="next-btn" class="material-icons">skip_next</span>
+        <span id="list-btn" class="material-icons">queue_music</span>
+      </div>
+      <div class="music-list">
+        <div class="list-top">
+          <h2>Play list<span id="music-note" class="material-icons">music_note</span></h2>
+          <span id="listup-btn" class="material-icons">expand_less</span>
+        </div>
+        <ul class="lists"></ul>
+      </div>
+    </div>
+  </div>
+  <script src="assets/script/musicList.js"></script>
+  <script src="assets/script/app.js"></script>
+</body>
+</html>
