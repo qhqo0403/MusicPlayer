@@ -1,5 +1,6 @@
 
 const musicWrap = document.getElementById('wrapper');
+const playingBg = document.getElementById('particles-js');
 const musicAudio = musicWrap.querySelector('#main-audio');
 
 const playBtn = musicWrap.querySelector('#play-btn');
@@ -35,6 +36,19 @@ const checkMusicList = (track) => {
   }
 }
 
+const bgChange = (state) => {
+  if (state === "play_arrow"){
+    musicWrap.style.backgroundColor = '#fff';
+    if (playingBg.classList.contains('show')) {
+      playingBg.classList.remove('show');
+    }
+    playingBg.classList.add('show');
+  } else{
+    musicWrap.style.backgroundColor = '#333';
+    playingBg.classList.remove('show');
+  }
+}
+
 const musicPlay = () => {
   playBtn.innerText = "pause";
   musicAudio.play();
@@ -49,6 +63,7 @@ const musicPause = () => {
 playBtn.addEventListener('click', () => {
   let getTxt = playBtn.innerText;
   (getTxt === "pause") ? musicPause() : musicPlay();
+  bgChange(getTxt);
 });
 
 const loadMusic = (num) => {
@@ -177,67 +192,103 @@ window.addEventListener("load", ()=>{
   playListMusic();   
 });
 
-
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = 1200;
-canvas.height = 600;
-
-let y = canvas.height;
-
-let rectX = 0;
-let valueY = 185;
-let startX = -3600;
-
-let endX = 1200;
-
-const painting = () => {
-  let gradient = ctx.createLinearGradient(startX, 0, endX, 0);
-  gradient.addColorStop(0, 'red');
-  gradient.addColorStop(0.10, 'yellow');
-  gradient.addColorStop(0.20, 'green');
-  gradient.addColorStop(0.30, 'blue');
-  gradient.addColorStop(0.40, 'purple');
-  gradient.addColorStop(0.5, 'red');
-  gradient.addColorStop(0.60, 'yellow');
-  gradient.addColorStop(0.70, 'green');
-  gradient.addColorStop(0.80, 'blue');
-  gradient.addColorStop(0.90, 'purple');
-  gradient.addColorStop(1, 'red');
-  ctx.fillStyle = gradient;
-}
-
-const animateColor = () => {
-  startX += 5;
-  endX += 5;
-  if ( endX === 3600){
-    startX = -3600;
-    endX = 1200;
-  }
-  painting();
-  window.requestAnimationFrame(animateColor);
-  console.log(startX, endX);
-}
-/* animateColor(); */
-
-let pY=45;
-const rect = (y) => {     
-  for(let i=0; i<170; i++){
-    let vy = -( Math.floor(Math.random()*y)+200 )+300;
-    ctx.fillRect(i*7, vy, 5, 15);
-  }
-}
-/* rect(0); */
-const moving = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height );
-  rect(pY);    
-}
-/* setInterval(moving, 150); */
-
-const musicEffect = () => {
-  animateColor();
-  rect(0);
-  setInterval(moving, 150);
-}
+particlesJS("particles-js", {
+  particles: {
+    number: {
+      value: 50,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    },
+    color: {
+      value: ["c1121f", "f77f00", "fcbf49", "2d6a4f", "1e6091", "7b2cbf"]
+    },
+    shape: {
+      type: ["circle"],
+      stroke: {
+        width: 0,
+        color: "#fff"
+      },
+      polygon: {
+        nb_sides: 5
+      },
+    },
+    opacity: {
+      value: 0.5,
+      random: false,
+      anim: {
+        enable: false,
+        speed: 1,
+        opacity_min: 0.1,
+        sync: false
+      }
+    },
+    size: {
+      value: 50,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 10,
+        size_min: 10,
+        sync: false
+      }
+    },
+    move: {
+      enable: true,
+      speed: 5,
+      direction: "none",
+      random: false,
+      straight: false,
+      out_mode: "out",
+      bounce: false,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200
+      }
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab"
+      },
+      onclick: {
+        enable: false,
+        mode: "push"
+      },
+      resize: true
+    },
+    modes: {
+      grab: {
+        distance: 140,
+        line_linked: {
+          opacity: 1
+        }
+      },
+      bubble: {
+        distance: 400,
+        size: 40,
+        duration: 2,
+        opacity: 8,
+        speed: 3
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4
+      },
+      push: {
+        particles_nb: 4
+      },
+      remove: {
+        particles_nb: 2
+      }
+    }
+  },
+  retina_detect: true
+});
 
 // 이벤트 중복 해결, 리스트를 누를 때 currentTime = 0 으로 초기화 되는 작업 필요
