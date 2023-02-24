@@ -3,6 +3,11 @@ const musicWrap = document.getElementById('wrapper');
 const playingBg = document.getElementById('particles-js');
 const musicAudio = musicWrap.querySelector('#main-audio');
 
+const volumeBtn = musicWrap.querySelector('#volume-btn');
+const volumeControl = volumeBtn.querySelector('.volume-control');
+const audioVolume = volumeBtn.querySelector('.volume');
+
+
 const playBtn = musicWrap.querySelector('#play-btn');
 const pauseBtn = musicWrap.querySelector('#pause-btn');
 const prevBtn = musicWrap.querySelector('#prev-btn');
@@ -190,6 +195,14 @@ const playListMusic = () => {
 window.addEventListener("load", ()=>{
   loadMusic(list_index);
   playListMusic();   
+});
+
+volumeBtn.addEventListener('click', () => {
+  volumeControl.classList.toggle('show');
+});
+
+audioVolume.addEventListener("change", function(e) {
+  musicAudio.volume = this.value/10;
 });
 
 particlesJS("particles-js", {

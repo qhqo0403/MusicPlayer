@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-body, div, p, h2, h3, span, audio, ul, li{
+body, div, p, h2, h3, span, audio, ul, li, input{
   margin: 0;
   padding: 0;
 }
@@ -49,6 +49,21 @@ body{
 .top>#volume-btn{
   font-size: 2rem;
   cursor: pointer;
+  position: relative;
+}
+.top>#volume-btn .volume-control{
+  position: absolute; right: -190px; top: 0;
+  width: 150px; height: 30px;
+  background: #fff;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+.top>#volume-btn .volume-control.show{
+  opacity: 1;
 }
 .album-img{
   width: 100%; height: 260px;
