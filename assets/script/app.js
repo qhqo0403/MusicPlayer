@@ -7,7 +7,6 @@ const volumeBtn = musicWrap.querySelector('#volume-btn');
 const volumeControl = volumeBtn.querySelector('.volume-control');
 const audioVolume = volumeBtn.querySelector('.volume');
 
-
 const playBtn = musicWrap.querySelector('#play-btn');
 const pauseBtn = musicWrap.querySelector('#pause-btn');
 const prevBtn = musicWrap.querySelector('#prev-btn');
@@ -190,19 +189,22 @@ const playListMusic = () => {
       }
     });
   }
-} 
+}
 
-window.addEventListener("load", ()=>{
-  loadMusic(list_index);
-  playListMusic();   
-});
-
+const initialVolume = (e) => {
+  musicAudio.volume = audioVolume.value/10;
+}
 volumeBtn.addEventListener('click', () => {
   volumeControl.classList.toggle('show');
 });
-
 audioVolume.addEventListener("change", function(e) {
   musicAudio.volume = this.value/10;
+});
+
+window.addEventListener("load", ()=>{
+  loadMusic(list_index);
+  playListMusic(); 
+  initialVolume();  
 });
 
 particlesJS("particles-js", {
