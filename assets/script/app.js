@@ -200,7 +200,6 @@ volumeBtn.addEventListener('click', () => {
 audioVolume.addEventListener("change", function(e) {
   musicAudio.volume = this.value/10;
 });
-
 window.addEventListener("load", ()=>{
   loadMusic(list_index);
   playListMusic(); 
@@ -223,7 +222,7 @@ particlesJS("particles-js", {
       type: ["circle"],
       stroke: {
         width: 0,
-        color: "#fff"
+        color: "none"
       },
       polygon: {
         nb_sides: 5
